@@ -30,19 +30,19 @@ permalink: /:title/
 
 # if you don't want comments in your posts, leave categories empty
 disqus:
-  shortname: haihnguyen # enter this from your disqus account
+  shortname: haihoangnguyen # enter this from your disqus account
   categories: [blog, project] # only show disqus for posts that have these categories
 
 # if you don't have any of social below, comment the line
 # facebook: myfacebook
-twitter: mytwitter
+# twitter: mytwitter
 # google: mygoogle
 # instagram: myinstagram
 # pinterest: mypinterest
 # linkedin: mylinkedin
 # youtube: myyoutube
 # spotify: myspotify
-github: hhainguyen
+github: haihoangnguyen
 # lastfm: mylastfm
 # stackoverflow: 7044681/mystackoverflow
 # quora: userquora
@@ -55,7 +55,7 @@ email: hhn <at> liverpool.ac.uk
 authors:
     hai:
         name: Hai Nguyen
-        bio: Not yet
+        bio: Data Scientist working at the University of Liverpool
         external-image: false
         picture: https://www.liverpool.ac.uk/media/livacuk/gdsl/images/hai.png
 #        twitter: johndoe

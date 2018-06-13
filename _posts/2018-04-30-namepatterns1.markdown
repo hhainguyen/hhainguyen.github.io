@@ -32,7 +32,7 @@ In this post, we are trying to follow human instinct while guessing where a pers
 
 * When I told people my first name,`Hai`, most of the time they would say I was from China. Not quite.
 
-* If I told them my middle name, *removed for privacy*, then they would have another guess, from Korea or China.
+* If I told them my middle name, `Hoang`, then they would have another guess, from Korea or China.
 
 * Finally, when they knew my last name, `Nguyen`, 75% of them made a correct prediction.
 
@@ -40,7 +40,9 @@ So which features in a name that enable us to correctly guess where a person com
 
 The first and easy answer would be linguistic/syntatic features. Such names or sub-names are somehow indexed in our brain so that every time we see a person with similar patterns/sub-names/names we can derive where they are from, which religion they follow and so on...
 
-In this first part, we will look at the importance of such syntatic features (sub-words) in name classification. We are going to do this by using some extensions of tree bagging models (*Random Forest* and *Extremely Randomized Trees*) to classify the datasets and then using feature importance of each model to see which parterns are more important features in classifying names.
+In this first part, we will look at the importance of such syntatic features (sub-words) in name classification. We are going to do this by using some extensions of tree bagging models (*Random Forest* and *Extremely Randomized Trees*) and boosting trees (xgboost) to classify the datasets and then using feature importance of each model to see which parterns are more important features in classifying names.
+
+Full dataset and code of this series is available at: https://github.com/hhainguyen/namepatterns.
 
 
 
@@ -1316,7 +1318,7 @@ As we can see, RF and EE models are very similar in terms of feature importance 
 1. **Most important (at least top-10) features are suffixes of a name** (can be either surname or forename): `an `, `ez ` for Hispanic names, `ov ` for Russian names, `vic ` for Balkan, `sen ` for Dannish names, etc.
 2. **Prefixes are much more rare, but seem to be important signals too.** `$al`,`$ch`, `$zh`, are common prefixes for Arabic, German, and Chinese surnames.
 3. Important patterns in XGB are in average shorter than ones in Random Forest and ExtraTrees. It looks like XGB looks at more dominant patterns and less randomised than RF and EE.
-4. **Whole names themselves in top patterns are `#van` and `$kim`**, all of which are popular names in Dutch, Vietnamese and Korea.
+4. **Whole names themselves in top patterns are `#van` and `$kim`**, all of which are popular names in Netherlands, Vietnam and Korea.
 
 ## Comparing Tree-based Models
 
@@ -1331,7 +1333,7 @@ from sklearn.model_selection import GridSearchCV
 
 # create kfold
 kfold = StratifiedKFold(n_splits=5, random_state=42)
-# for model in [ RandomForestClassifier(n_estimators=100,random_state=42,n_jobs=-1,verbose = 1,oob_score=True),ExtraTreesClassifier(n_estimators=100,random_state=42,n_jobs=-1,verbose = 1)]:
+# for each model running cross validation with 5 folds and use different scoring
 for model in [ XGBClassifier(n_estimators = 500, max_depth=5,nthread =20,objective='multi:softmax'), RandomForestClassifier(n_estimators=100,random_state=42,n_jobs=-1,verbose = 1,oob_score=True),ExtraTreesClassifier(n_estimators=100,random_state=42,n_jobs=-1,verbose = 1)]:
     start = time.time()
     scores_logloss = cross_val_score(model, data,encoded_label, cv=kfold,scoring='neg_log_loss')
@@ -1379,7 +1381,7 @@ Note that if you want to measure multiple scoring with cross-validation in `skle
 
 The results are quite promising, even without any hyperparameter tuning. All models achieved score above 50% accuracy. If you are working on the name-based nationality classification problem then this 50% would be already good for top-1 accuracy, given that we have over 150 countries in the label set. Best *logloss* score is `xgboost` model, it means that the probability of correct answers in this model is higher than ones in other models. Both bagging-based models (Random Forest and ExtraTrees) yielded similar accuracy and F1-micro score of 60%. 
 
-Time consumed for the models are significantly varied. XGboost took lots of time (about 2000s per `cross_val_score`) while Random Forest and Extra Trees tooks less than 50s per cross_val_score. However, this is a trade-off between performance and memory since with Random Forest and Extra Trees, given the number of features and the size of the dataset, increasing the number of trees (estimators) will lead to out-of-memory easily. So if there was a memory-rich machine, I would go with either RF or ExtraTrees. Also, my experience shows that with higher number of trees, ExtraTrees tends to train faster.
+Time consumed for the models are significantly varied. XGboost took lots of time (about 2000s per `cross_val_score`) while Random Forest and Extra Trees tooks less than 50s per cross_val_score. However, this is a trade-off between performance and memory since with Random Forest and Extra Trees, given the number of features and the size of the dataset, increasing the number of trees (estimators) will lead to out-of-memory easily. So if there was a memory-rich machine, I would go with either RF or ExtraTrees; otherwise XGBoost is a safe bet. Also, my experience suggests that with big datasets, ExtraTrees tends to train faster.
 
 
 ## Summary
