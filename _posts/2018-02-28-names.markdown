@@ -1,0 +1,38 @@
+---
+title: "I know nothing but names"
+layout: post
+date: 2018-02-28 
+tag: 
+- Word2Vec
+- Names
+- Text Classification
+- Neural Nets
+image: https://raw.githubusercontent.com/hhainguyen/indigo/gh-pages/assets/top100-uknames.png
+headerImage: False
+projects: true
+hidden: true 
+description: "This project is about mining patterns from personal names to build models that can clasify names into different categories."
+category: project
+author: hai
+externalLink: false
+---
+
+
+![Top 100 UK Surnames](https://raw.githubusercontent.com/hhainguyen/indigo/gh-pages/assets/top100-uknames.png)
+
+**Names** is one of my most favourite projects. We looked at how to represent information for a name and how such representation can be used to gain more understanding of a user like what is the country of origin, ethnicity, or gender... I have built a few models to classify forenames, surnames and full names into different typologies, mainly country of origin.
+
+---
+
+## Buzzwords
+
+- Natural Language Processing
+- Word2Vec
+- Text Classification
+- Recurrent Neural Nets
+- Naming Patterns
+- Transfer Learning
+
+---
+
+*More to follow*
