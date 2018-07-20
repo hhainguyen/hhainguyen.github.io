@@ -152,7 +152,7 @@ names['country'].value_counts()[names['country'].value_counts()>=20].plot.bar()
 
 
 
-![png](assets/images/output_5_1.png)
+![png](https://raw.githubusercontent.com/hhainguyen/hhainguyen.github.io/master/assets/images/output_5_1.png)
 
 
 There are many US and AU names in this dataset as the US is among the top sports country. However, a big issue is that they are also a immigration country. Let's have a look at some US names.
@@ -226,7 +226,7 @@ filtered_names['country'].value_counts()[names['country'].value_counts()>=20].pl
 
 
 
-![png](assets/images/output_9_2.png)
+![png](https://raw.githubusercontent.com/hhainguyen/hhainguyen.github.io/master/assets/images/output_9_2.png)
 
 
 
@@ -486,7 +486,7 @@ library(wordcloud)
 wordcloud(words=top_100_rf_features$V1, freq=top_100_rf_features$V3,min.freq=1,rot.per = 0,random.order = F,random.color = F,colors = brewer.pal(7, "Paired"))
 ```
 
-![Top 100 features in RF model](assets/images/top100rf_cropped.png)
+![Top 100 features in RF model](https://raw.githubusercontent.com/hhainguyen/hhainguyen.github.io/master/assets/images/top100rf_cropped.png)
 
 ## Summary
 In this blog post, we've gone through the steps to find the most important patterns for the name-based nationality prediction task. In particular, we have:
