@@ -56,7 +56,7 @@ authors:
     hai:
         name: Hai Nguyen
         bio: Data Scientist working at the University of Liverpool
-        external-image: false
+        external-image: true
         picture: https://www.liverpool.ac.uk/media/livacuk/gdsl/images/hai.png
 #        twitter: johndoe
 
