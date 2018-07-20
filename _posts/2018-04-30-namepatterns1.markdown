@@ -135,8 +135,7 @@ names[:10]
 </div>
 
 
-
-Let's plot the distribution of the names by country.
+To remove ambiguity between forenames and surnames, I annotated forenames with prefix # and surnames with prefix $. Now let's plot the distribution of the names by country (for clarity we only show countries with over 20 names).
 
 
 ```python
@@ -226,7 +225,7 @@ filtered_names['country'].value_counts()[names['country'].value_counts()>=20].pl
 
 
 
-![png](https://raw.githubusercontent.com/hhainguyen/hhainguyen.github.io/master/assets/images/output_9_2.png)
+![png](https://raw.githubusercontent.com/hhainguyen/hhainguyen.github.io/master/assets/images/namepatterns/output_9_2.png)
 
 
 
@@ -257,7 +256,7 @@ plt.show()
 
 
 
-![png](output_12_1.png)
+![png](https://raw.githubusercontent.com/hhainguyen/hhainguyen.github.io/master/assets/images/namepatterns/output_12_1.png)
 
 
 Let's choose the vocabulary size of 100K (10^5) as this would cover most of the features with n-ngram ranging from 3 to 6 characters since we are intertested in patterns, not performance... In practice I recommend using much lower vocab size as it will make the model more roburst and save your a lot more time. Note that we use the analyzer `char_wb` to count n-grams of characters and remove unnecessary ngrams in the border of words (with white spaces). I also removed token whose count less than 3 (possibly just typoes).
@@ -477,7 +476,7 @@ As we can see, RF and EE models are very similar in terms of feature importance 
 A blogpost should always end with a good visualisation. Here I visualise the top 100 n-grams in terms of importance for the name-based nationality classification task. To keep thing simple I used R's ***wordcloud*** package
 to produce this plot. We can easily see that most important features are suffixes, although quite a few prefixes of forenames appeared on the top 100.
 
-```{R}
+```R
 library(data.table)
 top_100_rf_features = fread('~/working/data-fun/blogs/name-patterns/data/rf_top100_features.csv')
 top_100_rf_features$V3 <- round(as.numeric(top_100_rf_features$V3)*100)
@@ -486,7 +485,7 @@ library(wordcloud)
 wordcloud(words=top_100_rf_features$V1, freq=top_100_rf_features$V3,min.freq=1,rot.per = 0,random.order = F,random.color = F,colors = brewer.pal(7, "Paired"))
 ```
 
-![Top 100 features in RF model](https://raw.githubusercontent.com/hhainguyen/hhainguyen.github.io/master/assets/images/top100rf_cropped.png)
+![Top 100 features in RF model](https://raw.githubusercontent.com/hhainguyen/hhainguyen.github.io/master/assets/images/namepatterns/top100rf_cropped.png)
 
 ## Summary
 In this blog post, we've gone through the steps to find the most important patterns for the name-based nationality prediction task. In particular, we have:
