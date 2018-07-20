@@ -151,7 +151,7 @@ names['country'].value_counts()[names['country'].value_counts()>=20].plot.bar()
 
 
 
-![png](https://raw.githubusercontent.com/hhainguyen/hhainguyen.github.io/master/assets/images/output_5_1.png)
+![png](https://raw.githubusercontent.com/hhainguyen/hhainguyen.github.io/master/assets/images/namepatterns/output_5_1.png)
 
 
 There are many US and AU names in this dataset as the US is among the top sports country. However, a big issue is that they are also a immigration country. Let's have a look at some US names.
